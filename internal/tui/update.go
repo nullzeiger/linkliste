@@ -10,6 +10,24 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 )
 
+const (
+	minListWidth      = 20
+	widthPercentage   = 0.4
+	heightPadding     = 2
+	minTerminalHeight = 5
+)
+
+func calculateListDimensions(width, height int) (int, int) {
+	listWidth := int(float64(width) * widthPercentage)
+	if listWidth < minListWidth {
+		listWidth = width / 2
+	}
+
+	listHeight := max(height-heightPadding, minTerminalHeight)
+
+	return listWidth, listHeight
+}
+
 // Update the state of TUI.
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	var cmd tea.Cmd
@@ -22,13 +40,9 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		}
 
 	case tea.WindowSizeMsg:
-		m.Width = msg.Width
-		m.Height = msg.Height
-		leftWidth := int(float64(m.Width) * 0.4)
-		if leftWidth < 20 {
-			leftWidth = m.Width / 2
-		}
-		m.L.SetSize(leftWidth, m.Height-2)
+		m.Width, m.Height = msg.Width, msg.Height
+		listW, listH := calculateListDimensions(m.Width, m.Height)
+		m.L.SetSize(listW, listH)
 
 	case ErrMsg:
 		m.Err = msg

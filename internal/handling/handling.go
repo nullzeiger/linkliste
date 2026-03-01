@@ -3,9 +3,9 @@
 // license that can be found in the LICENSE file.
 
 // Package handling provides higher-level business logic for managing
-// password entries. It sits between the CLI layer and the storage layer,
+// links entries. It sits between the CLI layer and the storage layer,
 // offering operations such as listing, creating, deleting, and searching
-// account entries.
+// link entries.
 package handling
 
 import (

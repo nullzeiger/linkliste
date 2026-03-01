@@ -7,9 +7,9 @@ package tui
 import (
 	"fmt"
 
-	"github.com/charmbracelet/bubbles/list"
-	"github.com/charmbracelet/bubbles/spinner"
-	tea "github.com/charmbracelet/bubbletea"
+	"charm.land/bubbles/v2/list"
+	"charm.land/bubbles/v2/spinner"
+	tea "charm.land/bubbletea/v2"
 	"github.com/nullzeiger/linkliste/internal/storage"
 	"github.com/nullzeiger/linkliste/internal/types"
 )
@@ -49,7 +49,6 @@ func InitialModel() Model {
 	l.SetShowStatusBar(false)
 	l.SetFilteringEnabled(true)
 	l.FilterInput.Prompt = " Search: "
-	l.FilterInput.Cursor.Style = CursorStyle
 	l.SetShowTitle(false)
 
 	s := spinner.New()

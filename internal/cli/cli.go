@@ -38,10 +38,10 @@ deleting, and searching through your saved links.`,
 
 // listCmd represents the list command
 var listCmd = &cobra.Command{
-	Use:   "list",
+	Use:     "list",
 	Aliases: []string{"ls", "all"},
-	Short: "List all link entries",
-	Long:  "Display all saved link entries with their details.",
+	Short:   "List all link entries",
+	Long:    "Display all saved link entries with their details.",
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := storage.Create(); err != nil {
 			fmt.Println("Error creating .links.json file:", err)
@@ -97,11 +97,11 @@ var addCmd = &cobra.Command{
 
 // deleteCmd represents the delete command
 var deleteCmd = &cobra.Command{
-	Use:   "delete [index]",
+	Use:     "delete [index]",
 	Aliases: []string{"rm", "remove"},
-	Short: "Delete a link entry by index",
-	Long:  "Remove a link entry from the list using its index number.",
-	Args:  cobra.ExactArgs(1),
+	Short:   "Delete a link entry by index",
+	Long:    "Remove a link entry from the list using its index number.",
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := storage.Create(); err != nil {
 			fmt.Println("Error creating .links.json file:", err)
@@ -114,7 +114,7 @@ var deleteCmd = &cobra.Command{
 			return
 		}
 
-		ok, err := handling.Delete(index)
+		ok, err := handling.Delete(index - 1)
 		if err != nil {
 			fmt.Println("Error deleting entry:", err)
 			return
@@ -186,7 +186,7 @@ func init() {
 	addCmd.Flags().StringVarP(&description, "description", "d", "", "Description of the link (required)")
 	addCmd.Flags().StringVarP(&name, "name", "n", "", "Name of the link (required)")
 	addCmd.Flags().StringVarP(&link, "url", "u", "", "URL of the link (required)")
-	
+
 	// Mark flags as required
 	addCmd.MarkFlagRequired("description")
 	addCmd.MarkFlagRequired("name")

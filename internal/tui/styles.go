@@ -4,7 +4,7 @@
 
 package tui
 
-import "github.com/charmbracelet/lipgloss"
+import "charm.land/lipgloss/v2"
 
 // Style fot TUI.
 var (
@@ -12,7 +12,6 @@ var (
 	LabelStyle   = lipgloss.NewStyle().Foreground(lipgloss.Color("#7D7D7D")).Render
 	DetailStyle  = lipgloss.NewStyle().Padding(1).Border(lipgloss.NormalBorder())
 	HeaderStyle  = lipgloss.NewStyle().Bold(true).Render
-	CursorStyle  = lipgloss.NewStyle().Foreground(lipgloss.Color("#ff5faf"))
 	SpinnerStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("#ff5faf"))
 )
 

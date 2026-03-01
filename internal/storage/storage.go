@@ -71,7 +71,7 @@ func Write(links []types.Link) error {
 	return os.WriteFile(path, jsonData, util.Perm)
 }
 
-// Append reads the existing apps from storage, adds the new link,
+// Append reads the existing links from storage, adds the new link,
 // and writes all links back to the file.
 // Returns an error if reading or writing fails.
 func Append(link types.Link) error {
